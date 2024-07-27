@@ -1,0 +1,11 @@
+{
+  "html.suggest.html5": true,
+  "emmet.includeLanguages": {
+    "njk": "html"
+  },
+  "git.ignoreLimitWarning": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "eslint.autoFixOnSave": "explicit"
+  },
+}

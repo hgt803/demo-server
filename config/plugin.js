@@ -4,4 +4,8 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
+  orm: {
+    enable: true,
+    package: 'egg-orm',
+  },
 };

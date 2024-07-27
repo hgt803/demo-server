@@ -21,6 +21,16 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.orm = {
+    host: '192.168.100.7',
+    port: '3306',
+    user: 'stop_online',
+    password: 'fpKbibQhanKj',
+    database: 'stop_online',
+    client: 'mysql',
+    baseDir: 'model',
+  };
+
   return {
     ...config,
     ...userConfig,
