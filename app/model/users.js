@@ -1,16 +1,21 @@
 // app/model/user.js
 module.exports = function(app) {
-    const { Bone, DataTypes: { BIGINT, STRING, TEXT } } = app.model;
+    const { Bone, DataTypes: { BIGINT, STRING, TEXT, DATE } } = app.model;
 
     return class Users extends Bone {
         static table = 'users'
 
         static attributes = {
-            name: STRING,
-            pwd: STRING,
-            phoneNumber: STRING(20),
-            iconImage: STRING(100),
-            verificationCode: STRING(20),
+            id: { type: BIGINT, primaryKey: true, autoIncrement: true },
+            email: {type: STRING, default: ''},
+            phoneNumber: {type: STRING, default: ''},
+            prefix: {type: STRING, default: ''},
+            pwd:  {type: STRING, default: ''},
+            address:  {type: STRING, default: ''},
+            birthday:  {type: STRING, default: ''},
+            iconImage:  {type: STRING, default: ''},
+            // verificationCode:  {type: STRING, default: ''},
+            createdAt: { type: DATE },
         }
     };
 }

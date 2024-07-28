@@ -12,5 +12,5 @@ module.exports = app => {
   // 注册
   router.post(`${namespace}/signUp`, controller.api.users.signUp);
   // 获取验证码
-  router.get(`${namespace}/verificationCode`, controller.api.users.verificationCode);
+  router.get(`${namespace}/getVerificationCode`, controller.api.verificationCode.getVerificationCode);
 };

@@ -8,47 +8,71 @@ class UsersController extends Controller {
   // 注册
   async signUp() {
     const { ctx } = this;
-    const { pwd, phoneNumber, name } = ctx.request.body;
+    const { pwd, phoneNumber, name, verificationCode } = ctx.request.body;
     const userInfo = await ctx.model.Users.find({
       phoneNumber,
     });
-    console.log('🚀 ~ UsersController ~ signUp ~ userInfo:', userInfo);
-    if (userInfo.name) {
+    if (userInfo.length) {
       ctx.body = {
         errCode: 1001,
         errMsg: '该手机号码已注册',
       };
     } else {
-      const user = await ctx.model.Users.create({
-        name,
-        pwd,
+      const a = await ctx.model.VerificationCode.findOne({
         phoneNumber,
       });
-      ctx.body = {
-        errCode: 1000,
-        errMsg: '',
-        data: user,
-      };
+      if (!a || a.verificationCode !== verificationCode) {
+        ctx.body = {
+          errCode: 1002,
+          errMsg: '验证码错误',
+          data: {},
+        };
+      } else {
+        const user = await ctx.model.Users.create({
+          name,
+          pwd,
+          phoneNumber,
+        });
+        ctx.body = {
+          errCode: 1000,
+          errMsg: '',
+          data: user,
+        };
+      }
+
+
     }
   }
   // 登录
   async signIn() {
     const { ctx } = this;
     const { pwd, phoneNumber } = ctx.request.body;
-    console.log('🚀 ~ UsersController ~ signIn ~ ctx.request.body:', ctx.request.body.phoneNumber);
-    const userInfo = await ctx.model.Users.find({
+    const userInfo = await ctx.model.Users.findOne({
       phoneNumber,
     });
-    if (userInfo && userInfo.pwd === pwd) {
+    if (!userInfo) {
+      ctx.body = {
+        errCode: 1003,
+        errMsg: '无此用户，请注册',
+        data: {},
+      };
+      return;
+    }
+    if (userInfo.pwd === pwd) {
       // 调用 rotateCsrfSecret 刷新用户的 CSRF token
       ctx.rotateCsrfSecret();
       // 设置用户session-id
       ctx.body = {
-        user: userInfo,
         errCode: 1000,
+        errMsg: '',
+        data: userInfo,
       };
     } else {
-      ctx.errCode = 1003;
+      ctx.body = {
+        errCode: 1004,
+        errMsg: '密码错误',
+        data: {},
+      };
     }
   }
   // 获取验证码
