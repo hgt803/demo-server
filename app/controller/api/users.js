@@ -45,7 +45,7 @@ class UsersController extends Controller {
   }
   // 登录
   async signIn() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const { pwd, phoneNumber } = ctx.request.body;
     const userInfo = await ctx.model.Users.findOne({
       phoneNumber,
@@ -59,13 +59,20 @@ class UsersController extends Controller {
       return;
     }
     if (userInfo.pwd === pwd) {
-      // 调用 rotateCsrfSecret 刷新用户的 CSRF token
-      ctx.rotateCsrfSecret();
-      // 设置用户session-id
+
+      // 生成 token 的方式
+      const token = app.jwt.sign({
+        userInfo, // 需要存储的 token 数据
+      }, app.config.jwt.secret);
+      // 前端的使用
+      //     config.headers['Authorization'] = `Bearer ${getToken()}`
+
       ctx.body = {
         errCode: 1000,
         errMsg: '',
-        data: userInfo,
+        data: {
+          token,
+        },
       };
     } else {
       ctx.body = {
@@ -75,13 +82,17 @@ class UsersController extends Controller {
       };
     }
   }
-  // 获取验证码
-  async verificationCode() {
+  // 获取用户信息
+  async getUserInfo() {
     const { ctx } = this;
+    const phoneNumber = ctx.state.user.userInfo.phoneNumber;
+    const userInfo = await ctx.model.Users.findOne({
+      phoneNumber,
+    });
     ctx.body = {
       errCode: 1000,
       errMsg: '',
-      verificationCode: getRandomIntInRange(100000, 999999),
+      data: userInfo,
     };
   }
 }

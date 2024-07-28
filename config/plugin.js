@@ -12,4 +12,8 @@ module.exports = {
     enable: true,
     package: 'egg-router-plus',
   },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt',
+  },
 };

@@ -7,7 +7,7 @@ module.exports = function(app) {
 
         static attributes = {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
-            email: {type: STRING, default: ''},
+            email: {type: STRING, default: '',},
             phoneNumber: {type: STRING, default: ''},
             prefix: {type: STRING, default: ''},
             pwd:  {type: STRING, default: ''},
@@ -16,6 +16,7 @@ module.exports = function(app) {
             iconImage:  {type: STRING, default: ''},
             // verificationCode:  {type: STRING, default: ''},
             createdAt: { type: DATE },
+            updatedAt: DATE,
         }
     };
 }

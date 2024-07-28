@@ -39,6 +39,15 @@ module.exports = appInfo => {
     },
   };
 
+  config.jwt = {
+    secret: '123456',
+  };
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
   return {
     ...config,
     ...userConfig,
