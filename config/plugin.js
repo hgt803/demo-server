@@ -8,4 +8,8 @@ module.exports = {
     enable: true,
     package: 'egg-orm',
   },
+  routerPlus: {
+    enable: true,
+    package: 'egg-router-plus',
+  },
 };

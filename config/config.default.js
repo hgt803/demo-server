@@ -29,6 +29,14 @@ module.exports = appInfo => {
     database: 'stop_online',
     client: 'mysql',
     baseDir: 'model',
+    // charset: 'utf8mb4',
+  };
+
+  // 关闭csrf
+  config.security = {
+    csrf: {
+      enable: false,
+    },
   };
 
   return {
