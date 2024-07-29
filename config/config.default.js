@@ -36,7 +36,9 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       enable: false,
+      ignoreJSON: true,
     },
+    // domainWhiteList: [ '*' ],
   };
 
   config.jwt = {
@@ -45,6 +47,8 @@ module.exports = appInfo => {
 
   config.cors = {
     origin: '*',
+    // credentials: true,
+    // withCredentials: true,
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
