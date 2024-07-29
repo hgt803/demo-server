@@ -1,8 +1,7 @@
 const { Controller } = require('egg');
-
-function getRandomIntInRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const path = require('path');
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 class UsersController extends Controller {
   // 注册
@@ -124,6 +123,26 @@ class UsersController extends Controller {
       };
     }
 
+  }
+
+  // 上传头像图片
+  async uploadImage() {
+    const ctx = this.ctx;
+    const file = ctx.request.files[0];
+    const name = uuidv4() + path.basename(file.filename);
+    // 文件处理，上传到云存储等等
+    const url = path.join('/public/image/', name);
+    const sysUrl = path.join(process.cwd(), '/app', url);
+    try {
+      const fileData = fs.readFileSync(file.filepath);
+      fs.writeFileSync(sysUrl, fileData);
+    } catch (err) {
+      throw err;
+    }
+
+    ctx.body = {
+      url,
+    };
   }
 }
 

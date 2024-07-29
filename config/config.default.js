@@ -52,6 +52,10 @@ module.exports = appInfo => {
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
+  config.multipart = {
+    mode: 'file',
+  };
+
   return {
     ...config,
     ...userConfig,

@@ -13,7 +13,8 @@
     "egg-orm": "^2.4.1",
     "egg-router-plus": "^2.0.0",
     "egg-scripts": "2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "egg-bin": "6",
