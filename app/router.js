@@ -13,6 +13,8 @@ module.exports = app => {
   router.post(`${namespace}/signUp`, controller.api.users.signUp);
   // 获取用户信息
   router.get(`${namespace}/getUserInfo`, jwt, controller.api.users.getUserInfo);
+  // 修改用户信息
+  router.put(`${namespace}/updateUserInfo`, jwt, controller.api.users.updateUserInfo);
   // 获取验证码
   router.get(`${namespace}/getVerificationCode`, controller.api.verificationCode.getVerificationCode);
 

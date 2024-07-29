@@ -85,15 +85,45 @@ class UsersController extends Controller {
   // 获取用户信息
   async getUserInfo() {
     const { ctx } = this;
-    const phoneNumber = ctx.state.user.userInfo.phoneNumber;
+    const id = ctx.state.user.userInfo.id;
     const userInfo = await ctx.model.Users.findOne({
-      phoneNumber,
+      id,
     });
     ctx.body = {
       errCode: 1000,
       errMsg: '',
       data: userInfo,
     };
+  }
+
+  // 修改用户信息
+  async updateUserInfo() {
+    const { ctx } = this;
+    const id = ctx.state.user.userInfo.id;
+    // const data = ctx.request.body;
+    const result = await ctx.model.Users.update(
+      { id },
+      {
+        ...ctx.request.body,
+      }
+    );
+    if (result) {
+      const userInfo = await ctx.model.Users.findOne({
+        id,
+      });
+      ctx.body = {
+        errCode: 1000,
+        errMsg: '',
+        data: userInfo,
+      };
+    } else {
+      ctx.body = {
+        errCode: 1005,
+        errMsg: '修改失败',
+        data: {},
+      };
+    }
+
   }
 }
 
