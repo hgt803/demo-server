@@ -11,7 +11,7 @@ class GetVerificationCodeController extends Controller {
     const { phoneNumber } = ctx.request.body;
 
 
-    const verificationCode = getRandomIntInRange(100000, 999999);
+    const verificationCode = getRandomIntInRange(1000, 9999);
 
     await ctx.model.VerificationCode.create({
       verificationCode,
