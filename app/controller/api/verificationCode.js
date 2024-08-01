@@ -8,9 +8,9 @@ class GetVerificationCodeController extends Controller {
   // 获取验证码
   async getVerificationCode() {
     const { ctx } = this;
-    const { phoneNumber } = ctx.request.body;
+    const { phoneNumber } = ctx.query;
 
-    const reg = /^1[3456789]\d{9}$/;
+    var reg = /^1[3456789]\d{9}$/;
 
     if(!reg.test(phoneNumber)){
       ctx.body = {
