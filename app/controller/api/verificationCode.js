@@ -10,10 +10,7 @@ class GetVerificationCodeController extends Controller {
     const { ctx } = this;
     const { phoneNumber } = ctx.request.body;
 
-    var reg = /^1[3456789]\d{9}$/;
-    // ^1  以1开头
-    // [3456789] 第2位，使用原子表里的任意一个原子都可以
-    // \d{9}$  第三位  朝后可以是任意数字  并且最后结尾必须是数字
+    const reg = /^1[3456789]\d{9}$/;
 
     if(!reg.test(phoneNumber)){
       ctx.body = {
