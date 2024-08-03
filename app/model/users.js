@@ -5,18 +5,27 @@ module.exports = function(app) {
     return class Users extends Bone {
         static table = 'users'
 
+        static initialize() {
+          // this.belongsTo('cart')
+          // this.belongsTo('order')
+          // this.belongsTo('notification')
+        }
+
         static attributes = {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
-            name: {type: STRING, default: '',},
-            email: {type: STRING, default: '',},
-            phoneNumber: {type: STRING, default: ''},
-            prefix: {type: STRING, default: ''},
-            pwd:  {type: STRING, default: ''},
-            address:  {type: STRING, default: ''},
-            birthday:  {type: STRING, default: ''},
-            iconImage:  {type: STRING, default: ''},
-            gender:  {type: STRING(1), default: 0},
-            // verificationCode:  {type: STRING, default: ''},
+            name: {type: STRING, defaultValue: '',},
+            email: {type: STRING, defaultValue: '',},
+            phoneNumber: {type: STRING, defaultValue: ''},
+            prefix: {type: STRING, defaultValue: ''},
+            pwd:  {type: STRING, defaultValue: ''},
+            address:  {type: STRING, defaultValue: ''},
+            birthday:  {type: STRING, defaultValue: ''},
+            iconImage:  {type: STRING, defaultValue: ''},
+            gender:  {type: STRING(1), defaultValue: 0},
+            visaName:  {type: STRING, defaultValue: ''},
+            visaNumber:  {type: STRING, defaultValue: ''},
+            visaExpiry:  {type: STRING, defaultValue: ''},
+            visaCvv:  {type: STRING, defaultValue: ''},
             createdAt: { type: DATE },
             updatedAt: DATE,
         }
