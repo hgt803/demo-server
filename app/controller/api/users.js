@@ -19,7 +19,7 @@ class UsersController extends Controller {
     } else {
       const a = await ctx.model.VerificationCode.findOne({
         phoneNumber,
-      });
+      }).order('createdAt', 'desc');
       if (!a || a.verificationCode !== verificationCode) {
         ctx.body = {
           errCode: 1002,

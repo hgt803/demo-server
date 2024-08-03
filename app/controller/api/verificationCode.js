@@ -10,9 +10,9 @@ class GetVerificationCodeController extends Controller {
     const { ctx } = this;
     const { phoneNumber } = ctx.query;
 
-    var reg = /^1[3456789]\d{9}$/;
+    const reg = /^1[3456789]\d{9}$/;
 
-    if(!reg.test(phoneNumber)){
+    if (!reg.test(phoneNumber)) {
       ctx.body = {
         errCode: 1010,
         errMsg: '请输入正确的手机号码',
