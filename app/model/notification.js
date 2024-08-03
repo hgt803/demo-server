@@ -9,6 +9,7 @@ module.exports = function(app) {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
             userId: {type: BIGINT, allowNull: false,},
             content: {type: STRING, defaultValue: '',},
+            vendor: {type: STRING, defaultValue: 'vendor',},
             read: {type: BOOLEAN, defaultValue: false,},
             createdAt: { type: DATE },
             updatedAt: DATE,

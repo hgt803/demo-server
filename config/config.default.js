@@ -56,6 +56,15 @@ module.exports = appInfo => {
     mode: 'file',
   };
 
+  config.redis = {
+    client: {
+      port: '6379',
+      host: '192.168.100.7',
+      password: '123456',
+      db: 0,
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
