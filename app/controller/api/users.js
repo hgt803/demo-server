@@ -100,6 +100,19 @@ class UsersController extends Controller {
     const { ctx } = this;
     const id = ctx.state.user.userInfo.id;
     // const data = ctx.request.body;
+
+    const { phoneNumber } = ctx.request.body;
+    const userInfo = await ctx.model.Users.find({
+      phoneNumber,
+    });
+    if (userInfo.length) {
+      ctx.body = {
+        errCode: 1001,
+        errMsg: '该手机号码已注册',
+      };
+      return;
+    }
+
     const result = await ctx.model.Users.update(
       { id },
       {
