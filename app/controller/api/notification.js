@@ -45,6 +45,25 @@ class NotificationController extends Controller {
 
   }
 
+  // 已阅读通知
+  async readNotification() {
+    const { ctx } = this;
+
+    const { id } = ctx.request.body;
+    await ctx.model.Notification.update(
+      { id },
+      {
+        read: true,
+      }
+    );
+
+    ctx.body = {
+      errCode: 1000,
+      errMsg: '',
+      data: {},
+    };
+
+  }
 }
 
 module.exports = NotificationController;

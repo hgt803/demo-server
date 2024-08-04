@@ -25,5 +25,6 @@ module.exports = app => {
   router.post(`${namespace}/createNotification`, jwt, controller.api.notification.createNotification);
   // 获取通知
   router.get(`${namespace}/getNotification`, jwt, controller.api.notification.getNotification);
-
+  // 获取通知
+  router.put(`${namespace}/readNotification`, jwt, controller.api.notification.readNotification);
 };
