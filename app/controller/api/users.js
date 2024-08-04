@@ -102,13 +102,13 @@ class UsersController extends Controller {
     // const data = ctx.request.body;
 
     const { phoneNumber } = ctx.request.body;
-    const userInfo = await ctx.model.Users.find({
+    const userInfo = await ctx.model.Users.findOne({
       phoneNumber,
     });
-    if (userInfo.length) {
+    if (userInfo && phoneNumber !== userInfo.phoneNumber) {
       ctx.body = {
         errCode: 1001,
-        errMsg: '该手机号码已注册',
+        errMsg: '该手机号码已被其他用户使用',
       };
       return;
     }
