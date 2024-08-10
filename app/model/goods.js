@@ -14,10 +14,10 @@ module.exports = function(app) {
             origin:  {type: STRING, defaultValue: ''}, // 产地
             score:  {type: DECIMAL(3, 2), defaultValue: 5}, //评分
             categoryId: {type: BIGINT}, // 标签id
-            barCode: {type: STRING, defaultValue: ''}, //条形码
-            isBanner: {type: BOOLEAN, defaultValue: false,},  // 是否在首页Banner
-            isRecommended: {type: BOOLEAN, defaultValue: false,},  // 是否在首页Recommended
-            isPopular: {type: BOOLEAN, defaultValue: false,},  // 是否在首页Popular
+            barCode: {type: BIGINT, unique: true}, //条形码
+            isBanner: {type: BIGINT, defaultValue: 0,},  // 是否在首页Banner
+            isRecommended: {type: BIGINT, defaultValue: 0,},  // 是否在首页Recommended
+            isPopular: {type: BIGINT, defaultValue: 0,},  // 是否在首页Popular
             createdAt: { type: DATE },
             updatedAt: DATE,
         }

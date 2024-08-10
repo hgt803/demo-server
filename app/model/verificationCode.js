@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   return class VerificationCode extends Bone {
       static table = 'verification_code'
-
+      // 验证码
       static attributes = {
           id: { type: BIGINT, primaryKey: true, autoIncrement: true },
           phoneNumber: {type: STRING, default: ''},

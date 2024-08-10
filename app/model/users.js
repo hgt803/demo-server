@@ -4,13 +4,7 @@ module.exports = function(app) {
 
     return class Users extends Bone {
         static table = 'users'
-
-        static initialize() {
-          // this.belongsTo('cart')
-          // this.belongsTo('order')
-          // this.belongsTo('notification')
-        }
-
+        // 用户信息
         static attributes = {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
             name: {type: STRING, defaultValue: '',},

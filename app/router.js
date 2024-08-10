@@ -23,8 +23,17 @@ module.exports = app => {
 
   // 新增通知
   router.post(`${namespace}/createNotification`, jwt, controller.api.notification.createNotification);
-  // 获取通知
+  // 获取通知列表
   router.get(`${namespace}/getNotification`, jwt, controller.api.notification.getNotification);
-  // 获取通知
+  // 已读通知
   router.put(`${namespace}/readNotification`, jwt, controller.api.notification.readNotification);
+
+  // 新增商品
+  router.post(`${namespace}/createGoods`, jwt, controller.api.goods.createGoods);
+
+  // 新增标签
+  router.post(`${namespace}/createCategory`, jwt, controller.api.category.createCategory);
+
+  // 首页
+  router.get(`${namespace}/getHomeData`, jwt, controller.api.home.getHomeData);
 };

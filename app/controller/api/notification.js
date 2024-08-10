@@ -4,11 +4,11 @@ class NotificationController extends Controller {
   // 新增通知
   async createNotification() {
     const { ctx } = this;
-    const user = await ctx.model.Notification.create(ctx.request.body);
+    const notification = await ctx.model.Notification.create(ctx.request.body);
     ctx.body = {
       errCode: 1000,
       errMsg: '',
-      data: user,
+      data: notification,
     };
 
   }

@@ -4,7 +4,7 @@ module.exports = function(app) {
 
     return class Notification extends Bone {
         static table = 'notification'
-
+      // 通知
         static attributes = {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
             userId: {type: BIGINT, allowNull: false,},
