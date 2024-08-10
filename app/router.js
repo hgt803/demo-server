@@ -30,10 +30,31 @@ module.exports = app => {
 
   // 新增商品
   router.post(`${namespace}/createGoods`, jwt, controller.api.goods.createGoods);
+  // 获取商品详情
+  router.get(`${namespace}/getGoodsDetail`, jwt, controller.api.goods.getGoodsDetail);
+  // 获取商品列表
+  router.get(`${namespace}/getGoodsList`, jwt, controller.api.goods.getGoodsList);
 
   // 新增标签
   router.post(`${namespace}/createCategory`, jwt, controller.api.category.createCategory);
 
   // 首页
   router.get(`${namespace}/getHomeData`, jwt, controller.api.home.getHomeData);
+
+  // 添加心愿
+  router.post(`${namespace}/createWishlist`, jwt, controller.api.wishlist.createWishlist);
+  // 删除心愿
+  router.delete(`${namespace}/deleteWishlist`, jwt, controller.api.wishlist.deleteWishlist);
+  // 获取心愿清单列表
+  router.get(`${namespace}/getWishlist`, jwt, controller.api.wishlist.getWishlist);
+
+
+  // 添加配送地址
+  router.post(`${namespace}/createLocation`, jwt, controller.api.location.createLocation);
+  // 删除配送地址
+  router.delete(`${namespace}/removeLocation`, jwt, controller.api.location.removeLocation);
+  // 修改配送地址
+  router.put(`${namespace}/updateLocation`, jwt, controller.api.location.updateLocation);
+  // 获取配送地址
+  router.get(`${namespace}/getLocation`, jwt, controller.api.location.getLocation);
 };
