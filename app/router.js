@@ -62,4 +62,13 @@ module.exports = app => {
   router.post(`${namespace}/editCart`, jwt, controller.api.cart.editCart);
   // 获取购物车数据
   router.get(`${namespace}/getCart`, jwt, controller.api.cart.getCart);
+
+  // 创建订单
+  router.post(`${namespace}/createOrder`, jwt, controller.api.order.createOrder);
+  // 修改订单状态
+  router.put(`${namespace}/updateOrderStatus`, jwt, controller.api.order.updateOrderStatus);
+  // 获取订单列表
+  router.get(`${namespace}/getOrderList`, jwt, controller.api.order.getOrderList);
+  // 计算费用
+  router.post(`${namespace}/calculateCost`, jwt, controller.api.order.calculateCost);
 };
