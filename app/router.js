@@ -57,4 +57,9 @@ module.exports = app => {
   router.put(`${namespace}/updateLocation`, jwt, controller.api.location.updateLocation);
   // 获取配送地址
   router.get(`${namespace}/getLocation`, jwt, controller.api.location.getLocation);
+
+  // 修改购物车数据【单个商品】
+  router.post(`${namespace}/editCart`, jwt, controller.api.cart.editCart);
+  // 获取购物车数据
+  router.get(`${namespace}/getCart`, jwt, controller.api.cart.getCart);
 };

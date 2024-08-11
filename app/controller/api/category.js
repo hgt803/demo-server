@@ -1,7 +1,7 @@
 const { Controller } = require('egg');
 
 class CategoryController extends Controller {
-  // 新增商品
+  // 新增标签
   async createCategory() {
     const { ctx } = this;
 
