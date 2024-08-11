@@ -10,7 +10,7 @@ module.exports = function(app) {
             userId: {type: BIGINT, allowNull: false,},
             content: {type: STRING, defaultValue: '',},
             vendor: {type: STRING, defaultValue: 'vendor',},
-            read: {type: BOOLEAN, defaultValue: false,},
+            read: {type: BIGINT, defaultValue: 0,},
             createdAt: { type: DATE },
             updatedAt: DATE,
         }

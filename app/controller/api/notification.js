@@ -52,7 +52,7 @@ class NotificationController extends Controller {
     await ctx.model.Notification.update(
       { id },
       {
-        read: true,
+        read: 1,
       }
     );
 
