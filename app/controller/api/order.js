@@ -107,6 +107,8 @@ class OrderController extends Controller {
     const total = await ctx.model.Order.count();
 
     const list = await ctx.model.Order
+      .find()
+      .with('goods')
       .order('updatedAt desc')
       .limit(size)
       .offset((page - 1) * size);
