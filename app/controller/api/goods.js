@@ -17,7 +17,7 @@ class GoodsController extends Controller {
   // 获取商品详情
   async getGoodsDetail() {
     const { ctx } = this;
-    const { id } = ctx.request.body;
+    const { id } = ctx.query;
 
     const userId = ctx.state.user.userInfo.id;
 
@@ -45,7 +45,7 @@ class GoodsController extends Controller {
   async getGoodsList() {
     const { ctx } = this;
 
-    const { size, page, name, barCode } = ctx.request.body;
+    const { size, page, name, barCode } = ctx.query;
 
     const search = {
       name: { $like: `%${name}%` },

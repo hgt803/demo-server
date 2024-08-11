@@ -17,8 +17,7 @@ class NotificationController extends Controller {
     const { ctx } = this;
 
     const userId = ctx.state.user.userInfo.id;
-    const { size, page } = ctx.request.body;
-
+    const { size, page } = ctx.query;
     const total = await ctx.model.Notification
       .find({
         userId,
