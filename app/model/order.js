@@ -7,6 +7,7 @@ module.exports = function(app) {
 
         static initialize() {
           this.belongsTo('goods', { foreignKey: 'goodsId' })
+          this.belongsTo('location', { foreignKey: 'locationId' })
         }
 
         // 订单清单
@@ -14,6 +15,7 @@ module.exports = function(app) {
             id: { type: BIGINT, primaryKey: true, autoIncrement: true },
             userId: {type: BIGINT, allowNull: false,}, // 用户ID
             goodsId: {type: BIGINT, allowNull: false,}, // 商品ID
+            locationId: {type: BIGINT, allowNull: false,}, // 配送地址ID
             amount: {type: BIGINT, allowNull: false,},  // 商品数量
             orderId: {type: STRING, allowNull: false,},  // 前端生成订单号：order_${yyyMMddHHmmss}_${uuid}
             status: {type: BIGINT, allowNull: false,},   // -1:cancelled 1:pending 2:on going 3:completed

@@ -6,11 +6,12 @@ class OrderController extends Controller {
     const { ctx } = this;
 
     const userId = ctx.state.user.userInfo.id;
-    const { goodsId, amount, orderId, subTotal, tax, handling, total } = ctx.request.body;
+    const { goodsId, amount, orderId, locationId, subTotal, tax, handling, total } = ctx.request.body;
     // orderId : order_${yyyMMddHHmmss}_${uuid}
     const order = await ctx.model.Order.create({
       userId,
       goodsId,
+      locationId,
       amount,
       orderId,
       status: 1,
@@ -29,7 +30,7 @@ class OrderController extends Controller {
 
   // 修改订单状态
   async updateOrderStatus() {
-    const { ctx, app } = this;
+    const { ctx } = this;
 
     const { orderId, status } = ctx.request.body;
 
@@ -109,6 +110,7 @@ class OrderController extends Controller {
     const list = await ctx.model.Order
       .find()
       .with('goods')
+      .with('location')
       .order('updatedAt desc')
       .limit(size)
       .offset((page - 1) * size);
