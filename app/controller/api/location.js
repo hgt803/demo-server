@@ -6,11 +6,11 @@ class LocationController extends Controller {
     const { ctx } = this;
 
     const userId = ctx.state.user.userInfo.id;
-    const { location } = ctx.request.body;
+    const { location, lng, lat } = ctx.request.body;
 
     const result = await ctx.model.Location.create({
       location,
-      userId,
+      userId, lng, lat,
     });
 
     ctx.body = {
@@ -45,13 +45,13 @@ class LocationController extends Controller {
     const { ctx } = this;
 
     // const userId = ctx.state.user.userInfo.id;
-    const { location, id } = ctx.request.body;
+    const { location, id, lng, lat } = ctx.request.body;
 
     const result = await ctx.model.Location.update(
       {
         id,
       }, {
-        location,
+        location, lng, lat,
       });
 
     ctx.body = {
