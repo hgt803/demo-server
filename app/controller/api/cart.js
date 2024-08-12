@@ -61,7 +61,7 @@ class CartController extends Controller {
         userId,
       })
       .with('goods')
-      .order('updatedAt desc')
+      .order('createdAt desc')
       .limit(size)
       .offset((page - 1) * size);
 
