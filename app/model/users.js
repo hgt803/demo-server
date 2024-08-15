@@ -1,6 +1,6 @@
 // app/model/user.js
 module.exports = function(app) {
-    const { Bone, DataTypes: { BIGINT, STRING, TEXT, DATE, TINYINT } } = app.model;
+    const { Bone, DataTypes: { BIGINT, STRING, TEXT, DATE, DECIMAL } } = app.model;
 
     return class Users extends Bone {
         static table = 'users'
