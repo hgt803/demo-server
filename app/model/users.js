@@ -20,6 +20,7 @@ module.exports = function(app) {
             visaNumber:  {type: STRING, defaultValue: ''},
             visaExpiry:  {type: STRING, defaultValue: ''},
             visaCvv:  {type: STRING, defaultValue: ''},
+            payment:  {type: DECIMAL(10, 2), defaultValue: 100000},
             createdAt: { type: DATE },
             updatedAt: DATE,
         }

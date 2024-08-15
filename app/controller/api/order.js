@@ -106,9 +106,12 @@ class OrderController extends Controller {
     const { size, page } = ctx.query;
 
     const total = await ctx.model.Order.count();
+    const userId = ctx.state.user.userInfo.id;
 
     const list = await ctx.model.Order
-      .find()
+      .find({
+        userId,
+      })
       .with('goods')
       .with('location')
       .order('updatedAt desc')
@@ -124,6 +127,43 @@ class OrderController extends Controller {
         size,
         page,
       },
+    };
+  }
+  // 获取订单列表
+  async pay() {
+    const { ctx } = this;
+
+    const userId = ctx.state.user.userInfo.id;
+    const { type, orderId } = ctx.request.body;
+
+    const order = await ctx.model.Order
+      .findOne({
+        userId,
+        orderId,
+      });
+    const user = await ctx.model.Order
+      .findOne({
+        userId,
+      });
+    await ctx.model.User
+      .update({
+        id: userId,
+      }, {
+        payment: +user.payment - +order.total,
+      });
+    if (type === 'payment') {
+      ctx.body = {
+        errCode: 1000,
+        errMsg: '',
+        data: {},
+      };
+      return;
+    }
+
+    ctx.body = {
+      errCode: 1020,
+      errMsg: '支付方式错误',
+      data: {},
     };
   }
 }

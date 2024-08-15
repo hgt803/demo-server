@@ -71,4 +71,6 @@ module.exports = app => {
   router.get(`${namespace}/getOrderList`, jwt, controller.api.order.getOrderList);
   // 计算费用
   router.post(`${namespace}/calculateCost`, jwt, controller.api.order.calculateCost);
+  // 支付
+  router.post(`${namespace}/pay`, jwt, controller.api.order.pay);
 };
