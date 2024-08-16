@@ -134,28 +134,38 @@ class OrderController extends Controller {
     const { ctx } = this;
 
     const userId = ctx.state.user.userInfo.id;
-    const { type, orderId } = ctx.request.body;
+    let { type, orderIdList } = ctx.request.body;
+    orderIdList = JSON.parse(orderIdList);
+    const orderList = await ctx.model.Order
+      .find({
+        // userId,
+        orderId: orderIdList,
+      });
+    let total = 0;
 
-    const order = await ctx.model.Order
+    orderList.forEach(item => {
+      total = +total + +item.total;
+
+    });
+
+    const user = await ctx.model.Users
       .findOne({
-        userId,
-        orderId,
+        id: userId,
       });
-    const user = await ctx.model.Order
-      .findOne({
-        userId,
-      });
-    await ctx.model.User
+    const payment = +user.payment - +total;
+    await ctx.model.Users
       .update({
         id: userId,
       }, {
-        payment: +user.payment - +order.total,
+        payment,
       });
     if (type === 'payment') {
       ctx.body = {
         errCode: 1000,
         errMsg: '',
-        data: {},
+        data: {
+          payment,
+        },
       };
       return;
     }
