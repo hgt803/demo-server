@@ -152,9 +152,12 @@ class UsersController extends Controller {
     } catch (err) {
       throw err;
     }
-
     ctx.body = {
-      url,
+      errCode: 1000,
+      errMsg: '',
+      data: {
+        url,
+      },
     };
   }
 }
