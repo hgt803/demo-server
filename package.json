@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start:prod": "egg-scripts start --env=prod --daemon --title=egg-server-demo-server",
-    "start": "egg-scripts start --daemon --title=egg-server-demo-server",
+    "start": "egg-scripts start --env=unittest --daemon --title=egg-server-demo-server",
     "stop": "egg-scripts stop --title=egg-server-demo-server",
     "restart": "npm run stop && npm run start",
     "dev": "egg-bin dev",
