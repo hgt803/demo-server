@@ -134,8 +134,8 @@ class OrderController extends Controller {
     const { ctx } = this;
 
     const userId = ctx.state.user.userInfo.id;
-    let { type, orderIdList } = ctx.request.body;
-    orderIdList = JSON.parse(orderIdList);
+    const { type, orderIdList } = ctx.request.body;
+    // orderIdList = JSON.parse(orderIdList);
     const orderList = await ctx.model.Order
       .find({
         // userId,
